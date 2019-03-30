@@ -18,6 +18,9 @@ class Image(TimeStampedModel):
     caption = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return 'User:{} - Image Caption:{}'.format(self.location, self.caption)
+
 class Comment(TimeStampedModel):
 
     """ Comment Model """
