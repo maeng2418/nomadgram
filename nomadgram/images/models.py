@@ -4,15 +4,16 @@ from nomadgram.users import models as user_models
 # Create your models here.
 class TimeStampedModel(models.Model):
     
-    created_at = models.DateTimeField(auto_now_add=True) # 처음 생성되었을때만 자동으로 날짜 추가
-    updated_at = models.DateTimeField(auto_now=True) # 모델이 저장될때마다 자동으로 새로고침
+    created_at = models.DateTimeField(auto_now_add=True) # Add the time automatically, when they were generated first.
+    updated_at = models.DateTimeField(auto_now=True) # Refresh the time automatically, when they saved.
     class Meta:
-        abstract = True # 데이터베이스를 생성하지 않음.(데이터베이스와 연결되지 않음.)
+
+        abstract = True # Don't make database (It doesn't connect with DB)
 
 class Image(TimeStampedModel):
 
     """ Image Model """
-    
+
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()

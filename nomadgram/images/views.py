@@ -4,10 +4,10 @@ from . import models, serializers
 
 class ListAllImages(APIView):
 
-    # 브라우저로부터 요청을 받음.
+    # request from browser.
     def get(self, request, format=None):
-        all_images =models.Image.objects.all() # 모델안의 모든 엘리멘트 가져옴.
+        all_images =models.Image.objects.all() # All elements from Model.
         
-        serializer = serializers.ImageSerializer(all_images, many=True) # serializer는 하나만 취급하므로 many=True로 설정해서 모든 것을 가져온다.
+        serializer = serializers.ImageSerializer(all_images, many=True) # serializer deals only one. So, Set many=True for getting all data.
         
-        return Response(data=serializer.data) # 응답으로 변환된 엘리먼트 반환.
+        return Response(data=serializer.data) # return converted Response.
