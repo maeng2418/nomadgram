@@ -9,6 +9,8 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class LikeSerializer(serializers.ModelSerializer):
 
+    image = ImageSerializer()
+
     # Meta class is extra information
     class Meta:
         model = models.Like
@@ -16,6 +18,8 @@ class LikeSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
+    image = ImageSerializer()
+    
     # Meta class is extra information
     class Meta:
         model = models.Comment
