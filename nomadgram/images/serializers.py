@@ -18,8 +18,8 @@ class CommentSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
 
     # Bring inside Object instead of the ID
-    comment_set = CommentSerializer(many=True)
-    like_set = LikeSerializer(many=True)
+    comments = CommentSerializer(many=True)
+    likes = LikeSerializer(many=True)
 
     # Meta class is extra information
     class Meta:
@@ -29,6 +29,6 @@ class ImageSerializer(serializers.ModelSerializer):
             'file',
             'location',
             'caption',
-            'comment_set', # Letter use lower name of model.
-            'like_set'
+            'comments', # Letter use lower name of model.
+            'likes'
         )
