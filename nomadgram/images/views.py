@@ -1,31 +1,26 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models, serializers
-
-class ListAllImages(APIView):
-
-    # request from browser.
-    def get(self, request, format=None):
-        all_images = models.Image.objects.all() # All elements from Model.
-        
-        serializer = serializers.ImageSerializer(all_images, many=True) # serializer deals only one. So, Set many=True for getting all data.
-        
-        return Response(data=serializer.data) # return converted Response.
-
-class ListAllComments(APIView):
+class Feed(APIView):
 
     def get(self, request, format=None):
-        all_comments = models.Comment.objects.all()
 
-        serializer = serializers.CommentSerializer(all_comments, many=True)
+        user = request.user # It means login user
 
-        return Response(data=serializer.data)
+        following_users = user.following.all()
 
-class ListAllLikes(APIView):
+        image_list = []
 
-    def get(self, request, format=None):
-        all_likes = models.Like.objects.all()
+        for following_user in following_users:
+            user_images = following_user.images.all()[:2] # The recent two file
+           
+            for image in user_images:
 
-        serializer = serializers.LikeSerializer(all_likes, many=True)
+                image_list.append(image)
 
-        return Response(data=serializer.data)
+        sorted_list = sorted(
+            image_list, key=lambda image: image.created_at, reverse=True) # Order by created_at
+
+        serializer = serializers.ImageSerializer(sorted_list, many=True)
+
+        return Response(serializer.data)

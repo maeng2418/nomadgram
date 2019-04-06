@@ -17,11 +17,14 @@ class Image(TimeStampedModel):
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()
-    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE, related_name='images')
 
     def __str__(self):
-        return 'User:{} - Image Caption:{}'.format(self.location, self.caption)
+        return '{} - {}'.format(self.location, self.caption)
 
+    # Meta class is used for setting model
+    class Meta:
+        ordering = ['-created_at'] # order by created_at
 class Comment(TimeStampedModel):
 
     """ Comment Model """
