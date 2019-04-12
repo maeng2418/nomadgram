@@ -19,7 +19,7 @@ class LikeSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     
-    creator = FeedUserSerializer()
+    creator = FeedUserSerializer(read_only=True)
     # Meta class is extra information
     class Meta:
         model = models.Comment
