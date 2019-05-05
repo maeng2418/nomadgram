@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework", #REST framework
+    "taggit", # Tag for the photos
 ]
 LOCAL_APPS = [
     "nomadgram.users.apps.UsersAppConfig",

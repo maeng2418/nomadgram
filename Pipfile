@@ -34,6 +34,7 @@ Pillow = "==5.4.1"
 Django = "==2.0.13"
 Werkzeug = "==0.15.1"
 Sphinx = "==1.8.5"
+django-taggit = "*"
 
 [requires]
 python_version = "3.6"
