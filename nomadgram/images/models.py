@@ -1,6 +1,7 @@
 from django.db import models
 from nomadgram.users import models as user_models
 from taggit.managers import TaggableManager
+
 # Create your models here.
 class TimeStampedModel(models.Model):
     
