@@ -131,7 +131,7 @@ class Search(APIView):
 
             hashtags = hashtags.split(",") # making array for searching
 
-            images = models.Image.objects.filter(tag__name__in=hashtags).distinct() #deep relationship
+            images = models.Image.objects.filter(tags__name__in=hashtags).distinct() #deep relationship
 
             serializer = serializers.CountImageSerializer(images, many=True)
 
