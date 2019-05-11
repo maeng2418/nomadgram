@@ -187,10 +187,33 @@ class ImageDetail(APIView):
         user = request.user
 
         try:
-            image = models.Image.objects.get(id=image_id)
+            image = models.Image.objects.get(id=image_id) # Anyone can see the image
         except models.Image.DoesNotExist:
              return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = serializers.ImageSerializer(image)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+    # put is for updating
+    def put(self, request, image_id, format=None):
+
+        user = request.user
+
+        try:
+            image = models.Image.objects.get(id=image_id, creator=user) # Only creator can see the image
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = serializers.InputImageSerializer(image, data=request.data, partial=True)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
