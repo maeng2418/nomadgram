@@ -10,5 +10,6 @@ urlpatterns = [
     path("<username>/following/", view=views.UserFollowing.as_view(), name='user_following'),
     path("search/", view=views.Search.as_view(), name='user_following'),
     path("<username>/", view=views.UserProfile.as_view(), name='user_profile'),
+    path('login/facebook/', view=views.FacebookLogin.as_view(), name='fb_login'),
 
 ]
