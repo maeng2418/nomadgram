@@ -36,6 +36,7 @@ Werkzeug = "==0.15.1"
 Sphinx = "==1.8.5"
 django-taggit = "*"
 django-taggit-serializer = "*"
+djangorestframework-jwt = "*"
 
 [requires]
 python_version = "3.6"
