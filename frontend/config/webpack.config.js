@@ -107,12 +107,7 @@ module.exports = function(webpackEnv) {
       },
     ].filter(Boolean);
     if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: {
-          sourceMap: isEnvProduction && shouldUseSourceMap,
-        },
-      });
+      loaders.push(preProcessor);
     }
     return loaders;
   };
@@ -416,6 +411,7 @@ module.exports = function(webpackEnv) {
                 importLoaders: 1,
                 sourceMap: isEnvProduction && shouldUseSourceMap,
                 modules: true,
+                camelCase: true, //ex) backGroundColor, iPhone... for writing phrases.
                 getLocalIdent: getCSSModuleLocalIdent,
               }),
             },
@@ -430,7 +426,6 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-loader'
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -448,8 +443,14 @@ module.exports = function(webpackEnv) {
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                   modules: true,
                   getLocalIdent: getCSSModuleLocalIdent,
+                  camelCase: true
                 },
-                'sass-loader'
+                {
+                  loader: require.resolve("sass-loader"),
+                  options: {
+                    data: `@import "${paths.appSrc}/config/_variables.scss";`
+                  }
+                },
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
