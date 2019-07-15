@@ -3,7 +3,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import users from 'redux/modules/users';
 import thunk from "redux-thunk";
 
+const env = process.env.NODE_ENV;
+
 const middlewares = [thunk];
+
+if (env === "delvelopment"){
+    const { logger } = require("redux-logger"); // for only dev not pord
+    middlewares.push(logger);
+}
 
 const reducer = combineReducers({
     users
