@@ -8,4 +8,4 @@ const reducer = combineReducers({
 
 let store = initialState => createStore(reducer);
 
-export default store()
+export default store();
