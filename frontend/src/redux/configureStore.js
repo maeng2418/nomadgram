@@ -3,15 +3,15 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import users from 'redux/modules/users';
 import thunk from "redux-thunk";
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from "history";
 
 const env = process.env.NODE_ENV;
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 const middlewares = [thunk, routerMiddleware(history)];
 
-if (env === "delvelopment"){
+if (env === "development"){
     const { logger } = require("redux-logger"); // for only dev not product
     middlewares.push(logger);
 }

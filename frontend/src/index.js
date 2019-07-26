@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import 'index.css';
 import App from 'App';
 import { Provider } from 'react-redux';
-import store, { history } from "redux/configureStore";
 import { ConnectedRouter } from 'react-router-redux';
+import store, { history } from "redux/configureStore";
 
 console.log(store.getState());
+store.dispatch({type: "BULLSHIT"});
 
 ReactDOM.render(
     <Provider store={store}>
