@@ -2,7 +2,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import users from 'redux/modules/users';
 import thunk from "redux-thunk";
-import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { routerMiddleware, connectRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 
 const env = process.env.NODE_ENV;
@@ -18,11 +18,10 @@ if (env === "development"){
 
 const reducer = combineReducers({
     users,
-    routing: routerReducer
+    router: connectRouter(history)
 });
 
-let store = initialState => 
-    createStore(reducer, applyMiddleware(...middlewares));  // ...middlewares -> thunk, dsle, dlwek  배열이 unpack됨.
+let store = initialState => createStore(reducer, applyMiddleware(...middlewares));  // ...middlewares -> thunk, dsle, dlwek  배열이 unpack됨.
 
 export { history };
 
