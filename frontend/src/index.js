@@ -5,7 +5,7 @@ import App from 'App';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "redux/configureStore";
-import 'ReactotronConfig';
+//import 'ReactotronConfig';
 
 //console.log(store.getState());
 //store.dispatch({type: "BULLSHIT"});
