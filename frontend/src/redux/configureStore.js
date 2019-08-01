@@ -1,6 +1,6 @@
 // 나의 스토어를 설정/구성 (여러 리듀서를 한번에 모아서 관리)
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import users from 'redux/modules/users';
+import user from 'redux/modules/user';
 import thunk from "redux-thunk";
 import { routerMiddleware, connectRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
@@ -20,7 +20,7 @@ if (env === "development"){
 }
 
 const reducer = combineReducers({
-    users,
+    user,
     router: connectRouter(history),
     i18nState
 });
