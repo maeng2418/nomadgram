@@ -7,11 +7,11 @@ class Container extends Component {
     };
     render(){
         const { action } = this.state;
-        return <Auth action={action} changeAction={this._changeAction}/>
+        return <Auth action={action} changeAction={this._changeAction}/>;
     }
     _changeAction = () => {
         this.setState(prevState => {
-            const { action } = prevState.action
+            const { action } = prevState;
             if(action === "login"){
                 return {
                     action: "signup"
